@@ -2,7 +2,7 @@
 
 ![Quarantine demo](media/demo.gif)
 
-*A vendored README carries a prompt injection with fake `</tool_result>` and `<system-reminder>` tags. Quarantine wraps the Read result as untrusted and defangs 3 lines, Claude refuses to run the script, and `/quarantine` lists the hit. [MP4](media/demo.mp4) · [screenshot](media/02-defanged.png) · [/quarantine](media/03-hits.png)*
+*A vendored README carries a prompt injection with fake `</tool_result>` and `<system-reminder>` tags. Quarantine wraps the Read result as untrusted and defangs 3 lines, Claude refuses to run the script, and `/quarantine` lists the hit. [MP4](https://github.com/ccdwyer/claude-mods/raw/main/media/quarantine.mp4) · [screenshot](media/02-defanged.png) · [/quarantine](media/03-hits.png)*
 
 A Claude Code mod that defends against prompt injection. Output from web pages, MCP servers, GitHub issues and PRs, and vendored files is marked as **untrusted data** before the model reads it. Lines that try to give the model instructions are visibly defanged.
 
@@ -64,3 +64,20 @@ This reduces risk; it does not guarantee safety:
 claude plugin validate .
 claude plugin test .
 ```
+
+## What it hooks
+
+Events this mod hooks, as `claude plugin validate` reads the module:
+
+- `session.start`
+- `command.run{command=quarantine}`
+- `tool.call`
+- `session.append{door=tool-result}`
+
+Engine calls it makes: `$.command.register`, `$.env.get`, `$.session.cwd`, `$.state.get`, `$.state.set`, `$.ui.status (via showStatus)`, `$.ui.toast`.
+
+A `tool.call` hook sits in the middle of every tool call: it can see the call, refuse it, or add context to its result. This mod uses that only for the behaviour described above.
+
+## License
+
+MIT

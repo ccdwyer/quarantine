@@ -27,5 +27,6 @@
     "name": "Chris Dwyer",
     "url": "https://github.com/ccdwyer"
   },
-  "repository": "https://github.com/ccdwyer/quarantine"
+  "repository": "https://github.com/ccdwyer/quarantine",
+  "license": "MIT"
 }
