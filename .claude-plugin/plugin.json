@@ -1,0 +1,31 @@
+{
+  "name": "quarantine",
+  "version": "0.1.0",
+  "description": "Wraps web, MCP and third-party tool output as untrusted data and defangs prompt-injection lines before the model reads them",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "trustedMcpServers": {
+      "type": "string",
+      "title": "Trusted MCP servers",
+      "description": "Comma-separated MCP server names whose output is not quarantined (e.g. serena,context7)",
+      "default": ""
+    },
+    "quarantineVendorReads": {
+      "type": "boolean",
+      "title": "Quarantine vendored files",
+      "description": "Treat Read of files under node_modules/, vendor/, Downloads/ and similar as untrusted",
+      "default": true
+    },
+    "quarantineAllShell": {
+      "type": "boolean",
+      "title": "Quarantine all shell output",
+      "description": "Wrap every Bash/PowerShell result, not only commands recognised as fetching remote text (safest; noisier)",
+      "default": false
+    }
+  },
+  "author": {
+    "name": "Chris Dwyer",
+    "url": "https://github.com/ccdwyer"
+  },
+  "repository": "https://github.com/ccdwyer/quarantine"
+}
