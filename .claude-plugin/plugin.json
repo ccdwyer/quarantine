@@ -28,5 +28,9 @@
     "url": "https://github.com/ccdwyer"
   },
   "repository": "https://github.com/ccdwyer/quarantine",
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://github.com/ccdwyer/quarantine",
+  "supportUrl": "https://github.com/ccdwyer/quarantine/issues",
+  "documentationUrl": "https://github.com/ccdwyer/quarantine#readme",
+  "privacyPolicyUrl": "https://github.com/ccdwyer/quarantine/blob/main/PRIVACY.md"
 }
